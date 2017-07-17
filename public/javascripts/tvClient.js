@@ -1,4 +1,4 @@
-socket = io.connect("http://localhost:3000");
+socket = io.connect("https://enigmatic-mesa-29883.herokuapp.com");
 socket.on('sendInput', navigate);
 socket.on('getRoomCode', initRoomJoin);
 var id = "#home";
@@ -167,7 +167,8 @@ function joinRoom(input) {
 var OAUTH2_CLIENT_ID = '849771718693-oukg7eks5ss8rg3haafgt3t4aoqju2q1.apps.googleusercontent.com';
 var OAUTH2_SCOPES = [
   'https://www.googleapis.com/auth/youtube',
-  'http://localhost:3000'
+  'http://localhost:3000',
+  'https://enigmatic-mesa-29883.herokuapp.com'
 ];
 
 // Upon loading, the Google APIs JS client automatically invokes this callback.

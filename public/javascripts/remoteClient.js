@@ -1,4 +1,4 @@
-socket = io.connect("http://localhost:3000");
+socket = io.connect("https://enigmatic-mesa-29883.herokuapp.com");
 socket.on("notconnected",notConnected)
 function sendInp(input){
 
