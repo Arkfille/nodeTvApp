@@ -1,0 +1,150 @@
+body{
+margin-top: -8px;
+margin-left: -8px;
+margin-right: 0px;
+margin-bottom: -10px;
+    background-color: #323;
+    overflow-y: hidden;
+
+}
+#logo{
+  margin: 0px 12vh;
+  padding-left: 20px;
+}
+#logo h1{
+  margin: 0 !important;
+}
+#logo img{
+  width: 300px;
+  margin-top: -81px;
+  top: 101px;
+  position: relative;
+}
+.wrapper{
+
+}
+.navTabs{
+  padding-left: 20px;
+  top: 150px;
+  position: relative;
+}
+.nav p{
+  padding: 8px 15px;
+  letter-spacing: 4px;
+  color: white;
+  font-family: helvetica;
+  font-size: 26px;
+}
+#resp{
+  color: white;
+    margin-left: 200px;
+}
+.nav{
+  z-index: 10;
+  width: 200px;
+  height: 103vh;
+  display: inline-block;
+  position: fixed;
+  margin-left: 12vh;
+}
+
+ul{
+
+  margin-left: -32px;
+  list-style: none;
+  margin-top: 50px;
+  text-align: center;
+}
+ul li{
+  font-family: helvetica;
+  border: 2px solid transparent;
+  font-size: 42px;
+  border-right: 0;
+  margin-bottom: 20px;
+  padding: 20px;
+  height: 125px;
+  vertical-align: middle;
+  line-height: 125px;       /* the same as your div height */
+}
+.selected{
+  border-radius: 2px;
+  outline: none;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.22);
+}
+.selected p{
+  color: #161616;
+
+}
+#rand{
+  height: 1000px;
+  width: 100%;
+}
+#featuredVideo{
+    top: 20px;
+    position: relative;
+    display: block;
+    width: 60%;
+    left: -11px;
+    margin: auto;
+    margin-bottom: 65px;
+}
+.homeVideos{
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: auto;
+}
+.videoCard{
+      width: 24%;
+    display: inline-block;
+}
+.videoCard img{
+  width: 200px;
+  height: 200px;
+  
+}
+.thumbnail{
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); 
+  transition: .3s; 
+  }
+
+.thumbhover
+{
+transform: scale(1.1);
+box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+#footer{
+  
+  background-color: white;
+  height: 30px;
+  position: relative;
+  bottom: -80px;
+  box-shadow: 0px -3px 3px 3px rgba(0, 0, 0, 0.1)
+}
+#footer p{
+  font-weight: bolder;
+  line-height: 0;
+  padding: 15px;
+}
+.content{
+  background-color: #323;
+  margin-top: 126px;
+  width: 70%;
+  height: 75vh;
+  overflow-y: scroll;
+  margin-left: 12vh;
+  padding-left: 220px;
+}
+.contentPage{
+  
+  display: none;
+}
+.pageActive{
+  display: block;
+}
+.settings{
+  text-align: center;
+  color: #fff;
+}

@@ -1,0 +1,14 @@
+extends layout
+//- mixin decleration
+mixin deviceCard(deviceName)
+  div(class="device card" id=deviceName onclick="redirect('"+deviceName+"')")
+    div.filter
+    h2.deviceText= deviceName 
+    
+      
+block content
+  //- h1= title
+  //- p Welcome to #{title}
+  div.wrapper
+    +deviceCard('TV')
+    +deviceCard('Remote')

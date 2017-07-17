@@ -1,0 +1,85 @@
+/*@import url('https://fonts.googleapis.com/css?family=Lato|Nobile:700');*/
+
+body {
+  margin: -8px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+a {
+  color: initial !important;
+  text-decoration: none !important;
+}
+
+.card {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.wrapper{
+}
+
+
+.device{
+  background-image: url("../images/TV-min.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: -485px;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+  width: 50%;
+  /*padding: 20px;
+  max-width: 492px;*/
+  position: relative;
+  height: 102vh;
+  overflow: hidden;
+  transition: 1s;
+}
+
+.device:last-child{
+  background-image: url("../images/remote-min.jpg");
+  background-position-x: -290px;
+
+}
+
+.device:hover{
+  cursor: pointer;
+  transform: scale(1.3);
+  z-index: 9;
+}
+
+
+.filter{
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  display: block;
+      background-image: linear-gradient(to right, #fa709a 0%, #2196F3 100%);
+  opacity: .7;
+  height: 100%;
+}
+
+.device:last-child .filter{
+      background-image: linear-gradient(to left, #fa709a 0%, #2196F3 100%);
+}
+
+.deviceText{
+  opacity: 1;
+  z-index: 3;
+  position: relative;
+  top: 35vh;
+  font-family: 'Nobile';
+  text-transform: uppercase;
+  font-size: 100px;
+  font-weight: lighter;
+  color: rgba(0,0,0,1);
+}
+
+@media screen and (max-width: 800px) {
+  #TV{
+    display: none !important;
+  }
+  #Remote{
+    width: 100%;
+  }
+}

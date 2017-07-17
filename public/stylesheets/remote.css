@@ -1,0 +1,103 @@
+body{
+  font-family: 'Lato';
+  background-color: #3d3d3d;
+  overflow: hidden;
+}
+
+.dirWrap{
+  top: 13vh;
+  position: relative;
+}
+i{
+  margin: auto;
+  vertical-align: middle;
+  font-size: 100px !important;
+  right: 50%;
+  bottom: 75%;
+  position: relative;
+}
+.dirKey{
+  text-align: center;
+
+  border-radius: 6px;
+  padding: 22px 20px;
+  font-size: 25px;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  display: block;
+  background-color: #707070;
+  box-shadow: 0px 3.5px 0px 0px #515151;
+  width: 50px;
+  height: 35px;
+}
+
+.dirKey:active {
+  transform: translate(0px, 3.5px);
+  -webkit-transform: translate(0px, 3.5px);
+  box-shadow: none;
+}
+
+.up{
+  margin: auto;
+  margin-bottom: 25px;
+
+}
+.down{
+  margin: auto;
+  margin-top: 25px;
+
+}
+
+.right{
+  right: 5%;
+  float: right;
+}
+.left{
+  left: 5%;
+}
+.enter{
+  margin: auto;
+  z-index: 9;
+  margin-top: -83px;
+  border-radius: 34%;
+  height: 35px;
+  width: 50px;
+}
+.back{
+  width: initial;
+  height: initial;
+  padding: 15px 20px;
+  border-radius: 0;
+  margin-top: -4px;
+}
+.connectBtn{
+  width: initial;
+  height: initial;
+  padding: 7px 10px;
+  position: absolute;
+  font-size: 16px;
+  bottom: 10px;
+}
+.form{
+  text-align: center;
+}
+#modal{
+  display: none;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background-color: white;
+  width: 90%;
+  padding: 25px;
+  top: 200px;
+  margin: auto;
+  z-index: 100;
+  position: absolute;
+}
+.active{
+  display: block !important;
+
+}
+#closeBtn{
+  font-size: 24px !important;
+  margin: -25px;
+}
