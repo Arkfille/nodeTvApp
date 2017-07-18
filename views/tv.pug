@@ -7,20 +7,26 @@ html(ng-app="tvApp")
     script(src='https://cdn.socket.io/socket.io-1.4.5.js')
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js")  
     script.
       var ytApi = !{JSON.stringify(data)};
       console.log(ytApi);
+    script(src='/javascripts/helpers.js')
     script(src='/javascripts/tvClient.js')
     link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
     link(rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css")
     script(defer src="https://code.getmdl.io/1.3.0/material.min.js")
     
+    
   body
     block content
 
       div.wrapper
+        div.darken
         div#logo
-          img(src="../images/nodeTV-logo.png") 
+          img(src="../images/nodeTV-logo.png" alt="node-TV") 
         div.nav
           div.navTabs
             div(class="selected" id="home")
@@ -38,11 +44,17 @@ html(ng-app="tvApp")
               <img id="featuredVideo"  class="thumbnail" src="http://via.placeholder.com/550x250">
               div.homeVideos
                 div.videoCard(ng-repeat="video in videos")
-                  <img id="videoStream-{{$index}}" class="thumbnail" src={{video.snippet.thumbnails.high.url}} />
+                  div.hoverWrap(id="videoStream-{{$index + 1}}" data-watchid="{{video.id.videoId}}")
+                    <img class="thumbnail" src={{video.snippet.thumbnails.high.url}} />
+                    div.shadow
+                      p {{video.snippet.title}}
                    
           div.contentPage.videos
             h3 Videos
             
           div.contentPage.settings
             h3 This TV's id is: <span id="roomID">null</span>
+      
+      div.videoPlayer
+        <div id="player"></div>
       div#footer

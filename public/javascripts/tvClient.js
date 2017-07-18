@@ -1,11 +1,12 @@
-socket = io.connect("https://enigmatic-mesa-29883.herokuapp.com");
+socket = io.connect(checkIfProduction());
 socket.on('sendInput', navigate);
 socket.on('getRoomCode', initRoomJoin);
 var id = "#home";
 var enterId;
 var blocking;
 var latestPressed;
-
+var scrollLength = 0;
+var modalIsUp = false;
 angular.module('tvApp', [])
   .controller('videoStream', function ($scope) {
     $scope.videos = ytApi.items;
@@ -18,10 +19,16 @@ function navigate(input) {
   $("*").removeClass("selected")
 
   console.log(input);
-  if (input == "back") {
+  if(modalIsUp && input == "back"){
+    player.stopVideo();
+    $(".videoPlayer").removeClass("animIn");
+    $(".darken").hide();    
+    modalIsUp = false;
+  }
+  else if (input == "back") {
     $(id).addClass("selected")
     blocking = false;
-    $(".thumbnail").removeClass("thumbhover");
+    //$(".thumbnail").removeClass("thumbhover");
   }
 
   if (!blocking) {
@@ -57,51 +64,61 @@ function navigate(input) {
     }
       navigationAct()
   } else {
+
+        cleanVideosHover();
+    
     switch (input) {
       case "up":
-
+        $(navigateVideos(-4)).addClass("thumbhover");
+        scrollWithVideos("up")     
         break;
       case "left":
-        $(enterId).prev().addClass("thumbhover");
-        enterId = $(enterId).prev();
+        $(navigateVideos(-1)).addClass("thumbhover");     
         break;
       case "right":
-        $(`#${enterId[0].id}`).addClass("thumbhover");
-        enterId = $(enterId).parent().next().find("img");
-        console.log(`#${enterId[0].id}`)
-        
+        $(navigateVideos(1)).addClass("thumbhover");     
         break;
       case "down":
-      test();
+        $(navigateVideos(4)).addClass("thumbhover");
+        scrollWithVideos("down")     
         break;
       case "enter":
+        playVideo();
         break;
     }
 
-    navigateVideos();
   }
 
 
   latestPressed = input; //I dont think this is used
 }
-function test(){
 
-        $("#videoStream-2").addClass("thumbhover");
+let navigateVideos = function(steps){
 
+  let numberFromID = enterId.substring(13);
+  let videoImgID = enterId.replace(/(\d+)/gm, parseInt(numberFromID) + parseInt(steps));
+  enterId = videoImgID;
+  //console.log(`${numberFromID} + ${steps} = ${parseInt(numberFromID) + parseInt(steps)}`);
+  return videoImgID;
 }
+
+
 function enterAct() {
 
   if (id == "#home" || id[0].id == "home" ) {
     console.log("ENTERED HOME")
-    enterId = "#videoStream-0";
+    enterId = "#videoStream-1";
+    shadowId = "#shadowStream-1";
+
+    $(shadowId).addClass("thumbhover");
     $(enterId).addClass("thumbhover");
   }
 
   blocking = true;
 }
 
-function navigateVideos(){
-  $(".thumbnail").removeClass("thumbhover");
+function cleanVideosHover(){
+  $(".hoverWrap").removeClass("thumbhover");
 
 
 }
@@ -131,7 +148,76 @@ function navigationAct() {
   }
 
 }
+     var tag = document.createElement('script');
 
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '615',
+          width: '400',
+          videoId: '',
+          events: {
+          }
+        });
+      }
+
+function playVideo(){
+  $(".darken").show();
+  $(".videoPlayer").addClass("animIn");
+  let youtubewatchID = $(enterId).data("watchid");  
+  player.loadVideoById(youtubewatchID)
+  modalIsUp = true;
+
+
+}
+
+function SearchVideo(searchQueryByUser){
+  window.location.search = "?search=" + searchQueryByUser;
+  
+}
+
+function scrollWithVideos(direction){
+  if(direction == "up"){
+    scrollLength = scrollLength - 240
+    console.log("scrollLength"); 
+  }
+  else{
+  scrollLength += 240;
+
+  }
+  let divWindow = $(".content")[0].scrollTop;
+  console.log(divWindow);
+    $('.content').animate({
+                    scrollTop: scrollLength  
+                }, 500);
+  
+}
+
+setTimeout(function() {
+  SpeechReckognitionInit()
+}, 5000);
+
+function SpeechReckognitionInit(){
+var commands = {
+    'search *searchQueryByUser': SearchVideo 
+}
+ annyang.addCommands(commands);
+ annyang.start();
+  // Tell KITT to use annyang
+  SpeechKITT.annyang();
+
+  // Define a stylesheet for KITT to use
+  //SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
+
+  // Render KITT's interface
+  SpeechKITT.vroom();
+
+ console.log("annyang started")
+} 
 
 
 function initRoomJoin(data) {
@@ -220,3 +306,5 @@ function loadAPIClientInterfaces() {
     handleAPILoaded();
   });
 }
+
+

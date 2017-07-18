@@ -1,4 +1,4 @@
-socket = io.connect("https://enigmatic-mesa-29883.herokuapp.com");
+socket = io.connect(checkIfProduction());
 socket.on("notconnected",notConnected)
 function sendInp(input){
 

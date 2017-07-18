@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/tv', tv);
+app.use('/tv/:search?', tv);
 app.use('/remote', remote);
 
 

@@ -3,14 +3,18 @@ var router = express.Router();
 var YouTube = require('youtube-node');
 var youTube = new YouTube();
 youTube.setKey('AIzaSyAyO8ZM8hdQsTjhn-nfxYHLMAJ9cwGDZQg');
-
+youTube.addParam('type', 'video');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 var YTresponse;
 var realresult;
+var searchquery = "Vevo"
+  if(req.query.search){
+    console.log(req.query.search);
+     searchquery = req.query.search;
+  }
 
-
-   youTube.search('G-eazy', 25, function(error, result) {
+   youTube.search(searchquery, 24, function(error, result) {
     if (error) {
       console.log(error);
     } 
