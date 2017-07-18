@@ -17,6 +17,7 @@ var searchquery = "Vevo"
    youTube.search(searchquery, 24, function(error, result) {
     if (error) {
       console.log(error);
+      
     } 
     else {
       YTresponse = JSON.stringify(result, null, 1);
