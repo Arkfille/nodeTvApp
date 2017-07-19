@@ -89,14 +89,27 @@ ul li{
   width: 100%;
 }
 #featuredVideo{
+    height: 250px;
+    overflow: hidden;
+    padding: 1px 10 2 10;
+    background-color: #8c728c;
+    color: white;
     top: 20px;
     position: relative;
     display: block;
-    width: 60%;
+    width: 68%;
     left: -11px;
     margin: auto;
     margin-bottom: 65px;
 }
+  h2{
+    text-align: center;
+    
+  }
+   h2,h3,h4,h5{
+    font-family: 'Lato', sans-serif !important;
+
+  }
 .homeVideos{
     position: relative;
     display: block;
@@ -109,7 +122,7 @@ ul li{
     height: 200px;
   }
 .videoCard{
-      width: 24%;
+      width: 18%;
     display: inline-block;
     margin-bottom: 20px;
 }
@@ -126,6 +139,7 @@ ul li{
 .shadow p {
     font-size: 17px;
     color: white;
+    font-family: 'Lato', sans-serif;
   }
 .videoCard img{
   width: 200px;

@@ -20,7 +20,7 @@ a {
 
 
 .device{
-  background-image: url("../images/TV-min.jpg");
+  background-image: url("../images/TV-min-updated.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position-x: -485px;
@@ -37,7 +37,7 @@ a {
 }
 
 .device:last-child{
-  background-image: url("../images/remote-min.jpg");
+  background-image: url("../images/remote-min-updated.jpg");
   background-position-x: -290px;
 
 }

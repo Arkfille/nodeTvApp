@@ -7,6 +7,7 @@ var blocking;
 var latestPressed;
 var scrollLength = 0;
 var modalIsUp = false;
+var helpMenuIsOpen = true;
 angular.module('tvApp', [])
   .controller('videoStream', function ($scope) {
     $scope.videos = ytApi.items;
@@ -69,7 +70,7 @@ function navigate(input) {
     
     switch (input) {
       case "up":
-        $(navigateVideos(-4)).addClass("thumbhover");
+        $(navigateVideos(-5)).addClass("thumbhover");
         scrollWithVideos("up")     
         break;
       case "left":
@@ -79,7 +80,7 @@ function navigate(input) {
         $(navigateVideos(1)).addClass("thumbhover");     
         break;
       case "down":
-        $(navigateVideos(4)).addClass("thumbhover");
+        $(navigateVideos(5)).addClass("thumbhover");
         scrollWithVideos("down")     
         break;
       case "enter":
@@ -199,25 +200,46 @@ function scrollWithVideos(direction){
 
 setTimeout(function() {
   SpeechReckognitionInit()
-}, 5000);
+}, 3000);
 
 function SpeechReckognitionInit(){
 var commands = {
-    'search *searchQueryByUser': SearchVideo 
+    'search *searchQueryByUser (and) play first' : SearchAndPlay,
+    'search *searchQueryByUser': SearchVideo,
+    'play first (video)': playfirst,
 }
  annyang.addCommands(commands);
- annyang.start();
   // Tell KITT to use annyang
-  SpeechKITT.annyang();
-
+  //SpeechKITT.annyang();
+  annyang.start();
   // Define a stylesheet for KITT to use
   //SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
 
   // Render KITT's interface
-  SpeechKITT.vroom();
+  //SpeechKITT.vroom();
 
  console.log("annyang started")
+
+  if(localStorage.getItem("playfirst")){
+    playfirst();
+    localStorage.removeItem("playfirst")
+  }
+
 } 
+
+function playfirst(){
+    $(".darken").show();
+    $(".videoPlayer").addClass("animIn");
+    let ID = "#videoStream-1";
+    let youtubewatchID = $(ID).data("watchid");  
+    player.loadVideoById(youtubewatchID)
+    modalIsUp = true;
+}
+
+function SearchAndPlay(searchQueryByUser){
+  SearchVideo(searchQueryByUser)
+  localStorage.setItem("playfirst", true);
+}
 
 
 function initRoomJoin(data) {

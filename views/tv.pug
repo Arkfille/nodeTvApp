@@ -1,8 +1,9 @@
 html(ng-app="tvApp")
   head
-    title= title
+    title
+      NodeTV
     script(src="https://apis.google.com/js/api.js")      
-    
+    link(href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet")
     link(rel='stylesheet', href='/stylesheets/tv.css')
     script(src='https://cdn.socket.io/socket.io-1.4.5.js')
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js")
@@ -41,7 +42,9 @@ html(ng-app="tvApp")
           //- p#resp= ytapi
           div.contentPage.home.pageActive(ng-controller="videoStream")
             div#rand
-              <img id="featuredVideo"  class="thumbnail" src="http://via.placeholder.com/550x250">
+              div(id="featuredVideo"  class="thumbnail")
+                h2(id="searchTitle") Welcome to nodeTv!
+                h4(id="helpText") In nodeTv you can use voice commands to control most inputs <br> try saying "search G-eazy" to get a list of G-eazy videos or try "play first video" to play the first video in the list below <br> or why not try both combined?
               div.homeVideos
                 div.videoCard(ng-repeat="video in videos")
                   div.hoverWrap(id="videoStream-{{$index + 1}}" data-watchid="{{video.id.videoId}}")
