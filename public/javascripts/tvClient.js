@@ -204,9 +204,14 @@ setTimeout(function() {
 
 function SpeechReckognitionInit(){
 var commands = {
-    'search *searchQueryByUser (and) play first' : SearchAndPlay,
+    'search *searchQueryByUser (and) play first (video)' : SearchAndPlay,
     'search *searchQueryByUser': SearchVideo,
     'play first (video)': playfirst,
+    'go *input': navigate,
+    'play (that one) (that) (this) (video)': VoiceplayThis,
+    'back': VoiceBack,
+    'enter': VoiceplayThis,
+    'play (the) :numb (video)': Voicenav
 }
  annyang.addCommands(commands);
   // Tell KITT to use annyang
@@ -226,6 +231,52 @@ var commands = {
   }
 
 } 
+function Voicenav(numb){
+    let ID;
+  switch (numb) {
+      case "first":
+      ID = "#videoStream-1";
+      break;
+      case "secound":
+      ID = "#videoStream-2";
+      break;
+      case "third":
+      ID = "#videoStream-3";
+      break;
+      case "fourth":
+      ID = "#videoStream-4";
+      break;
+      case "fifth":
+      ID = "#videoStream-5";
+      break;
+      case "sixth":
+      ID = "#videoStream-6";
+      break;
+      case "seventh":
+      ID = "#videoStream-7";
+      break;
+      case "eight":
+      ID = "#videoStream-8";
+      break;
+      case "ninth":
+      ID = "#videoStream-9";
+      break;
+      case tenth:
+      ID = "#videoStream-10";
+      break;
+  }
+   $(".darken").show();
+    $(".videoPlayer").addClass("animIn");
+    let youtubewatchID = $(ID).data("watchid");  
+    player.loadVideoById(youtubewatchID)
+    modalIsUp = true;
+}
+function VoiceBack(){
+navigate("back")
+}
+function VoiceplayThis(){
+  navigate("enter")
+}
 
 function playfirst(){
     $(".darken").show();
