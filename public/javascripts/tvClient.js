@@ -8,6 +8,7 @@ var latestPressed;
 var scrollLength = 0;
 var modalIsUp = false;
 var helpMenuIsOpen = true;
+
 angular.module('tvApp', [])
   .controller('videoStream', function ($scope) {
     $scope.videos = ytApi.items;
@@ -206,22 +207,35 @@ function SpeechReckognitionInit(){
 var commands = {
     'search *searchQueryByUser (and) play first (video)' : SearchAndPlay,
     'search *searchQueryByUser': SearchVideo,
+    'sök *searchQueryByUser': SearchVideo,
     'play first (video)': playfirst,
     'go *input': navigate,
-    'play (that one) (that) (this) (video)': VoiceplayThis,
+    'play (that one) (that) (this) (video) (one)': VoiceplayThis,
+    'pause (video)': VoicePause,
+    'unpause (video)': Voiceplay,
+    'continue (video)': Voiceplay,
     'back': VoiceBack,
+    'exit (video)': VoiceBack,
+    'close (video)': VoiceBack,
     'enter': VoiceplayThis,
-    'play (the) :numb (video)': Voicenav
+    'play (the) :numb (video)': Voicenav,
+    '(show) fullscreen': launchIntoFullscreen,
+    'zoom': launchIntoFullscreen,
+    'exit fullscreen': launchIntoFullscreen
 }
+  annyang.setLanguage('se-SE');
  annyang.addCommands(commands);
   // Tell KITT to use annyang
-  //SpeechKITT.annyang();
-  annyang.start();
+  SpeechKITT.annyang();
+  
+  
   // Define a stylesheet for KITT to use
-  //SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
+  SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat.css');
 
   // Render KITT's interface
-  //SpeechKITT.vroom();
+  annyang.start();
+  SpeechKITT.vroom();
+
 
  console.log("annyang started")
 
@@ -232,6 +246,7 @@ var commands = {
 
 } 
 function Voicenav(numb){
+    console.log(numb);
     let ID;
   switch (numb) {
       case "first":
@@ -261,10 +276,59 @@ function Voicenav(numb){
       case "ninth":
       ID = "#videoStream-9";
       break;
-      case tenth:
+      case "tenth":
       ID = "#videoStream-10";
       break;
+      case "eleventh":
+      ID = "#videoStream-11";
+      break;
+      case "twelfth":
+      ID = "#videoStream-12";
+      break;
+      case "thirteenth":
+      ID = "#videoStream-13";
+      break;
+      case "fourteenth":
+      ID = "#videoStream-14";
+      break;
+      case "fiftheenth":
+      ID = "#videoStream-15";
+      break;
+      case "sixteenth":
+      ID = "#videoStream-16";
+      break;
+      case "seventeenth":
+      ID = "#videoStream-17";
+      break;
+      case "eigtheenth":
+      ID = "#videoStream-18";
+      break;
+      case "nineteenth":
+      ID = "#videoStream-19";
+      break;
+      case "twentieth":
+      ID = "#videoStream-20";
+      break;
+      case "twentyfirst":
+      ID = "#videoStream-21";
+      break;
+      case "twentysecound":
+      ID = "#videoStream-22";
+      break;
+      case "twentythird":
+      ID = "#videoStream-23";
+      break;
+      case "twentyfourth":
+      ID = "#videoStream-24";
+      break;
+      case "twentyfifth":
+      ID = "#videoStream-25";
+      break;
+      case "last":
+      ID = "#videoStream-25";
+      break;
   }
+    console.log(ID);
    $(".darken").show();
     $(".videoPlayer").addClass("animIn");
     let youtubewatchID = $(ID).data("watchid");  
@@ -275,7 +339,16 @@ function VoiceBack(){
 navigate("back")
 }
 function VoiceplayThis(){
+  if(!modalIsUp){
   navigate("enter")
+  }
+  else Voiceplay(); 
+}
+function VoicePause(){
+  callPlayer("pauseVideo")
+}
+function Voiceplay(){
+  callPlayer("playVideo")
 }
 
 function playfirst(){
